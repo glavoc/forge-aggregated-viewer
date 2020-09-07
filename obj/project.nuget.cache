@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "zGHNQKsY+MTwcx8n9qF3rz23CYcaRaI1fImyZEhLOVirEZrcIMQnwJdgg/sPY+2opdXCIYfkY1/zRakZhb6SJQ==",
+  "success": true,
+  "projectFilePath": "/home/luka/Documents/Coding/NetCore/basicforgeviewer/basicforgeviewer.csproj",
+  "expectedPackageFiles": [
+    "/home/luka/.nuget/packages/autodesk.forge/1.7.0/autodesk.forge.1.7.0.nupkg.sha512",
+    "/home/luka/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.7/microsoft.aspnetcore.jsonpatch.3.1.7.nupkg.sha512",
+    "/home/luka/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.7/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.7.nupkg.sha512",
+    "/home/luka/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/luka/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/home/luka/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "/home/luka/.nuget/packages/restsharp/106.3.1/restsharp.106.3.1.nupkg.sha512"
+  ],
+  "logs": []
+}

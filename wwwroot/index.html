@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Forge Tutorial</title>
+    <!-- Three JS -->
+    <script src="https://threejs.org/build/three.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- JSTree -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Autodesk Forge Viewer files -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
+        type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+    <!--Chart JS  packages-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+    <!-- this project js files-->
+    <script src="./js/extensions/NestedViewerExtension/NestedViewerExtension.js"></script>
+    <link rel="stylesheet" href="./js/extensions/NestedViewerExtension/main.css">
+    <script src="./js/extensions/IconMarkupExtension/IconMarkupExtension.js"></script>
+    <link rel="stylesheet" href="./js/extensions/IconMarkupExtension/main.css">
+    <script src="./js/extensions/TranformationExtension/TransformationExtension.js"></script>
+    <link rel="stylesheet" href="./js/extensions/TranformationExtension/main.css">
+    <!-- dashboard files -->
+    <script src="./js/extensions/Dashboard/Dashboard.js"></script>
+    <script src="./js/extensions/Dashboard/DashboardPanel.js"></script>
+    <script src="./js/extensions/Dashboard/PanelBarChart.js"></script>
+    <script src="./js/extensions/Dashboard/PanelPieChart.js"></script>
+    <script src="./js/extensions/DockingPanel/DockingPanel.js"></script>
+    <link rel="stylesheet" href="./js/extensions/DockingPanel/main.css" />
+    <script src="js/ForgeTree.js"></script>
+    <script src="js/ForgeViewer.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body style="background-color: #96B6C0;">
+    <div id="viewport">
+        <div id="sidebar">
+            <header>
+                <img alt="Autodesk Forge"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/9/96/20130314190443%21Autodesk_logo.svg/120px-Autodesk_logo.svg.png"
+                    height="40"> Visual Reports
+            </header>
+            <div id="userHubs"></div>
+        </div>
+        <div id="viewerContainer">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div style="float: right; margin-top: 15px;">
+                        <span style="padding-right: 5px; cursor: pointer;" id="signIn" title="Sign in">
+                            <span class="glyphicon glyphicon-user"> </span>
+                            Sign in
+                        </span>
+                        <span style="padding-right: 5px; cursor: pointer; display: none;" id="signOut" title="Sign out">
+                            <span class="glyphicon glyphicon-user"> </span>
+                            Sign out
+                        </span>
+                    </div>
+                </div>
+            </nav>
+            <div id="forgeViewer" class="fill"></div>
+        </div>
+        <div id="dashboard"></div>
+    </div>
+</body>
+
+<iframe id="hiddenFrame" style="visibility: hidden; display: none"></iframe>
+
+</html>

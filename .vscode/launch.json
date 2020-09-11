@@ -25,7 +25,7 @@
                 "ASPNETCORE_URLS": "http://localhost:3000",
                 "FORGE_CLIENT_ID": "fGclun32X4rGfpQalTnndVjxJDdkkdT6",
                 "FORGE_CLIENT_SECRET": "nfQ7QAvJcW5f3cFw",
-                "FORGE_CALLBACK_URL": "https://forgenetcore.herokuapp.com/api/forge/oauth2/callback",
+                "FORGE_CALLBACK_URL": "http://localhost:3000/api/forge/oauth/callback",
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"

@@ -20,7 +20,10 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FORGE_CLIENT_ID": "fGclun32X4rGfpQalTnndVjxJDdkkdT6",
+        "FORGE_CLIENT_SECRET": "nfQ7QAvJcW5f3cFw",
+        "FORGE_CALLBACK_URL": "http://localhost:3000/api/forge/oauth2/callback"
       }
     }
   }

@@ -23,9 +23,9 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://localhost:3000",
-                "FORGE_CLIENT_ID": "fGclun32X4rGfpQalTnndVjxJDdkkdT6",
-                "FORGE_CLIENT_SECRET": "nfQ7QAvJcW5f3cFw",
-                "FORGE_CALLBACK_URL": "http://localhost:3000/api/forge/oauth/callback",
+                "FORGE_CLIENT_ID": "apA4GCkT4k4DGQwj8xuinVSqgxIHAooA",
+                "FORGE_CLIENT_SECRET": "aGVZq8wgmH4pWhKx",
+                "FORGE_CALLBACK_URL": "http://127.0.0.1:3000/api/forge/oauth2/callback",
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"

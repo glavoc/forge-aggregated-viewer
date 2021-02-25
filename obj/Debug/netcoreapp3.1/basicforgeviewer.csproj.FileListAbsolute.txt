@@ -25,13 +25,4 @@
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.JsonPatch.dll
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/appsettings.Development.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/appsettings.json
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/web.config
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/basicforgeviewer.deps.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/basicforgeviewer.runtimeconfig.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/publish/web.config
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/publish/appsettings.Development.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/publish/appsettings.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/publish/basicforgeviewer.deps.json
-/home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/publish/basicforgeviewer.runtimeconfig.json

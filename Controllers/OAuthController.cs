@@ -61,7 +61,7 @@ namespace basicforgeviewer.Controllers
         }
 
         [HttpGet]
-        [Route("api/forge/oauth/callback")]
+        [Route("api/forge/oauth2/callback")]
         public async Task<IActionResult> OAuthCallbackAsync(string code)
         {
             if (string.IsNullOrWhiteSpace(code)) return Redirect("/");

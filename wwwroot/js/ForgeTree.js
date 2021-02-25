@@ -88,12 +88,79 @@ function prepareUserHubsTree() {
       if (data.node.id.indexOf('|') > -1) {
         var urn = data.node.id.split('|')[1];
         var viewableId = data.node.id.split('|')[2];
+        console.log(urn);
         launchViewer(urn, viewableId);
       }
       else {
-        launchViewer(data.node.id);
+        console.log(data.node.id);
+        //launchViewer(data.node.id);
+        const models = [
+          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0z' },
+          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0y' },
+          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0x' },
+        ];
+        launchViewer(models.concat());
       }
     }
+  });
+}
+
+function getForgeToken(callback) {
+  fetch('/api/forge/oauth/token').then(res => {
+    res.json().then(data => {
+      callback(data.access_token, data.expires_in);
+    });
+  });
+  
+}
+
+function launchViewer( models ) {
+  if( !models || models.length <= 0 )
+    return console.error( 'Empty model input' );
+
+  const options = {
+    env: 'AutodeskProduction',
+    getAccessToken: getForgeToken
+  };
+
+  const options3d = {
+    viewerConfig: {
+      disableBimWalkInfoIcon: true
+    }
+  };
+
+  function loadManifest( documentId ) {
+    return new Promise(( resolve, reject ) => {
+      const onDocumentLoadSuccess = ( doc ) => {
+        doc.downloadAecModelData(() => resolve(doc));
+      };
+      Autodesk.Viewing.Document.load( documentId, onDocumentLoadSuccess, reject );
+    });
+  }
+
+  Autodesk.Viewing.Initializer( options, function() {
+    //get the viewer div
+    const viewerDiv = document.getElementById( 'forgeViewer' );
+
+    //initialize the viewer object
+    const view = new Autodesk.Viewing.AggregatedView();
+    view.init( viewerDiv, options3d );
+
+    const viewer = view.viewer;
+
+    const tasks = [];
+    models.forEach( md => tasks.push( loadManifest( md.urn ) ) );
+
+
+    Promise.all(tasks)
+            .then( docs =>  Promise.resolve( docs.map( doc => {
+              const bubbles = doc.getRoot().search({type:'geometry', role: '3d'});
+              const bubble = bubbles[0];
+              if( !bubble ) return null;
+
+              return bubble;
+            })))
+            .then( bubbles => view.setNodes( bubbles ) );
   });
 }
 

@@ -2102,49 +2102,49 @@
     "Autodesk.Forge/1.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7sGU+wqMwvLusCjPzuSxQiRZBwuA7m6iQffYxoAWIQmq5H27z5cRpRpIy7L+FDzyQFJig0tE4A/mNkw1OSkLvA==",
+      "sha512": "sha512-9tPR+5wWTyCukmxUvogDMGy8A+7PHEC+RU20DKmqKwH62RG4WPjO2Aj8vk/9ERFtFDAs5QjOlF7RtbLpRq+wtQ==",
       "path": "autodesk.forge/1.7.0",
       "hashPath": "autodesk.forge.1.7.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/3.1.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MiLRn6GufpLke12+rZb7p+gtJl8tAAuilyHCgdhUu6BAmJBN1uXxa9E4FKZ2xVJvv17y7d1ANaZ+oWQE3FzdZA==",
+      "sha512": "sha512-/gD5mRjrFNvF/aTUeIP+ppL7xMd0QPO+em9gYjfM+z5VRcKV+/rXcL6iGF92RAoLUvalBixObqjcPC2lMqzwow==",
       "path": "microsoft.aspnetcore.jsonpatch/3.1.7",
       "hashPath": "microsoft.aspnetcore.jsonpatch.3.1.7.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sg6gvRCAQMubkcHTSbEQcDqH2gJDWFT+90GQG/0xar5oM2Ybf4mP22e+IZ3ZHZhZFdywCwQrzsXyXZXkdHr07g==",
+      "sha512": "sha512-iqnyCy5d7D0yaVG1/xjt+bz9bIIwHSt7qX8AmTDGTr6VX2BY5XMGfMLD2jYaglwbQanTTUeRd3FziNLx300Hyg==",
       "path": "microsoft.aspnetcore.mvc.newtonsoftjson/3.1.7",
       "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.3.1.7.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LJaYhRX5VxTUuD9WUPGD3GpWTgs89SVfoOPvSEdt66tL3lQvny9sR/ZiC3px1qUV5EFebS44i2CBeiliHVaQ3w==",
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "path": "microsoft.csharp/4.7.0",
       "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Newtonsoft.Json/12.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mtweBXPWhp1CMQATtBT7ZfMZrbZBTKfjGwz6Y75NwGjx/GztDaUnfw8GK9KZ2T4fDIqKJyDjc9Rxlw5+G2FcVA==",
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
       "path": "newtonsoft.json/12.0.2",
       "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
     "Newtonsoft.Json.Bson/1.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-M52Tfhn8KzsfmTKHl9/KjVHvA6zWxuYa46HZ3ldqlT4U3N/pEeHvwtyzYx+3/jVnLb4t62hB2zWNVwDGl0VHfg==",
+      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
       "path": "newtonsoft.json.bson/1.0.2",
       "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
     },
     "RestSharp/106.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CFaes/aW50HUI2hOVG8O7jtvI/pW+UMWp6aG1ZoFYaeVTs4m3ku4Fma++AADI5SrFOSsJd71PsGIf8FBhbGUVA==",
+      "sha512": "sha512-TmlN7SXjK52zzpQDTuzw7IH3XQ2Svtss/4zvQBKIgf74QIVxvlxoAqQYu1EhNQ1bMSBIQ4aK120BO7W+v8/kiQ==",
       "path": "restsharp/106.3.1",
       "hashPath": "restsharp.106.3.1.nupkg.sha512"
     },

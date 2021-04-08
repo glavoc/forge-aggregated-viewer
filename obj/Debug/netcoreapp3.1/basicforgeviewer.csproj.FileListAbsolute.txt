@@ -26,3 +26,28 @@
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
 /home/luka/Documents/Coding/NetCore/basicforgeviewer/bin/Debug/netcoreapp3.1/publish/web.config
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\appsettings.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.exe
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.deps.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.runtimeconfig.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.runtimeconfig.dev.json
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\basicforgeviewer.pdb
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Autodesk.Forge.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\bin\Debug\netcoreapp3.1\RestSharp.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.csprojAssemblyReference.cache
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\staticwebassets\basicforgeviewer.StaticWebAssets.Manifest.cache
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\staticwebassets\basicforgeviewer.StaticWebAssets.xml
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.MvcApplicationPartsAssemblyInfo.cache
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.AssemblyInfoInputs.cache
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.AssemblyInfo.cs
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.RazorTargetAssemblyInfo.cache
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.csproj.CopyComplete
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.dll
+F:\Documents LM\Coding\Projects\NET\forge-aggregated-viewer\obj\Debug\netcoreapp3.1\basicforgeviewer.pdb

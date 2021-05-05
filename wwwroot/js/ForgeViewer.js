@@ -84,73 +84,11 @@ function launchViewer( models ) {
             })))
             .then( bubbles => view.setNodes( bubbles ) );
   });
-}
 
-
-
-// @urn the model to show
-// @viewablesId which viewables to show, applies to BIM 360 Plans folder
-// function launchViewer(urn, viewableId) {
-//   var options = {
-//     env: 'AutodeskProduction',
-//     getAccessToken: getForgeToken,
-//     api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
-//   };
-
-//   Autodesk.Viewing.Initializer(options, () => {
-//     const config = {
-//       extensions: ['Autodesk.VisualClusters', 'Autodesk.DocumentBrowser', 
-//       'NestedViewerExtension', 'IconMarkupExtension']
-//     };
-
-//     viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'), config);
-//     viewer.start();
-//     var documentId = 'urn:' + urn;
-//     Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
-
-//     // smooth navigation...
-//     viewer.autocam.shotParams.destinationPercent = 3;
-//     viewer.autocam.shotParams.duration = 3;
-//   });
-
-//   function onDocumentLoadSuccess(doc) {
-//     // if a viewableId was specified, load that view, otherwise the default view
-//     var viewables = (viewableId ? doc.getRoot().findByGuid(viewableId) : doc.getRoot().getDefaultGeometry());
-//     viewer.loadDocumentNode(doc, viewables).then(i => {
-//       // any additional action here?
-//       //load extensions
-//       viewer.loadExtension("NestedViewerExtension", { filter: ["2d", "3d"], crossSelection: true })
-//       viewer.loadExtension('IconMarkupExtension', {
-//         button: {
-//           icon: 'fa-thermometer-half',
-//           tooltip: 'Show Temperature'
-//         },
-//         icons: [
-//           { dbId: 3944, label: '300&#176;C', css: 'glyphicon glyphicon-dashboard' },
-//           { dbId: 721, label: '356&#176;C', css: 'glyphicon glyphicon-dashboard' },
-//           { dbId: 10312, label: '450&#176;C', css: 'glyphicon glyphicon-dashboard' },
-//           { dbId: 563, css: 'glyphicon glyphicon-warning-sign' },
-//         ],
-//         onClick: (id) => {
-//           viewers.select(id);
-//           viewers.utilities.fitToView();
-//           switch (id) {
-//             case 563:
-//               alert('Sensor offline');
-//           }
-//         }
-//       })
-//       viewer.loadExtension("TransformationExtension")
-//       viewer.loadExtension("DockingPanel");
-      
-//       //viewer.loadExtension("ExcelExport"); TODO - export data to EXCEL
-//     });
-//   }
 
   function onDocumentLoadFailure(viewerErrorCode) {
     console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
   }
-}
 
 function getForgeToken(callback) {
   fetch('/api/forge/oauth/token').then(res => {

@@ -43,6 +43,7 @@ function prepareUserHubsTree() {
   $('#userHubs').jstree({
     'core': {
       'themes': { "icons": true },
+      'plugins': [ "themes", "html_data", "checkbox", "sort", "ui" ],
       'multiple': false,
       'data': {
         "url": '/api/forge/datamanagement',

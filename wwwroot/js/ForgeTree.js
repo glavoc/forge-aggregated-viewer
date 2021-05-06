@@ -56,16 +56,16 @@ function prepareUserHubsTree() {
       }
     },
     'types': {
-      'default': { 'icon': 'glyphicon glyphicon-question-sign'},
-      '#': { 'icon': 'glyphicon glyphicon-user'},
-      'hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: {class: "no_checkbox" } },
-      'personalHub': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: {class: "no_checkbox" }},
-      'bim360Hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360hub.png', a_attr: {class: "no_checkbox" }},
-      'bim360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360project.png', a_attr: {class: "no_checkbox"} },
-      'a360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360project.png', a_attr: {class: "no_checkbox" }},
-      'folders': { 'icon': 'glyphicon glyphicon-folder-open', a_attr: {class: "no_checkbox" }},
-      'items': { 'icon': 'glyphicon glyphicon-file', a_attr: {class: "no_checkbox" }},
-      'bim360documents': { 'icon': 'glyphicon glyphicon-file', a_attr: {class: "no_checkbox" }},
+      'default': { 'icon': 'glyphicon glyphicon-question-sign' },
+      '#': { 'icon': 'glyphicon glyphicon-user' },
+      'hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: { class: "no_checkbox" } },
+      'personalHub': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: { class: "no_checkbox" } },
+      'bim360Hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360hub.png', a_attr: { class: "no_checkbox" } },
+      'bim360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360project.png', a_attr: { class: "no_checkbox" } },
+      'a360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360project.png', a_attr: { class: "no_checkbox" } },
+      'folders': { 'icon': 'glyphicon glyphicon-folder-open', a_attr: { class: "no_checkbox" } },
+      'items': { 'icon': 'glyphicon glyphicon-file', a_attr: { class: "no_checkbox" } },
+      'bim360documents': { 'icon': 'glyphicon glyphicon-file', a_attr: { class: "no_checkbox" } },
       'versions': { 'icon': 'glyphicon glyphicon-time' },
       'unsupported': { 'icon': 'glyphicon glyphicon-ban-circle' }
     },
@@ -84,7 +84,7 @@ function prepareUserHubsTree() {
     'checkbox': {
       three_state: false,
       whole_node: false,    // should be set to false. otherwise checking the hidden checkbox
-                            // could be possible by clicking the node
+      // could be possible by clicking the node
       tie_selection: false, // necessary for whole_node to work
     },
     'plugins': ["types", "state", "sort", "checkbox"],
@@ -108,6 +108,10 @@ function prepareUserHubsTree() {
         ];
         launchViewer(models.concat());
       }
+    }
+    else if (data.node.children.length > 0) {
+      $('#userHubs').jstree(true).deselect_node(data.node);
+      $('#userHubs').jstree(true).toggle_node(data.node);
     }
   });
 }

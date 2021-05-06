@@ -43,7 +43,7 @@ function prepareUserHubsTree() {
   $('#userHubs').jstree({
     'core': {
       'themes': { "icons": true },
-      'plugins': [ "themes", "html_data", "checkbox", "sort", "ui" ],
+      'plugins': ["themes", "checkbox"],
       'multiple': false,
       'data': {
         "url": '/api/forge/datamanagement',
@@ -56,20 +56,20 @@ function prepareUserHubsTree() {
       }
     },
     'types': {
-      'default': { 'icon': 'glyphicon glyphicon-question-sign' },
-      '#': { 'icon': 'glyphicon glyphicon-user' },
-      'hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png' },
-      'personalHub': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png' },
-      'bim360Hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360hub.png' },
-      'bim360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360project.png' },
-      'a360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360project.png' },
-      'folders': { 'icon': 'glyphicon glyphicon-folder-open' },
-      'items': { 'icon': 'glyphicon glyphicon-file' },
-      'bim360documents': { 'icon': 'glyphicon glyphicon-file' },
+      'default': { 'icon': 'glyphicon glyphicon-question-sign'},
+      '#': { 'icon': 'glyphicon glyphicon-user'},
+      'hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: {class: "no_checkbox" } },
+      'personalHub': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360hub.png', a_attr: {class: "no_checkbox" }},
+      'bim360Hubs': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360hub.png', a_attr: {class: "no_checkbox" }},
+      'bim360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/bim360project.png', a_attr: {class: "no_checkbox"} },
+      'a360projects': { 'icon': 'https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/a360project.png', a_attr: {class: "no_checkbox" }},
+      'folders': { 'icon': 'glyphicon glyphicon-folder-open', a_attr: {class: "no_checkbox" }},
+      'items': { 'icon': 'glyphicon glyphicon-file', a_attr: {class: "no_checkbox" }},
+      'bim360documents': { 'icon': 'glyphicon glyphicon-file', a_attr: {class: "no_checkbox" }},
       'versions': { 'icon': 'glyphicon glyphicon-time' },
       'unsupported': { 'icon': 'glyphicon glyphicon-ban-circle' }
     },
-    "sort": function (a, b) {
+    'sort': function (a, b) {
       var a1 = this.get_node(a);
       var b1 = this.get_node(b);
       var parent = this.get_node(a1.parent);
@@ -81,8 +81,14 @@ function prepareUserHubsTree() {
       else if (a1.type !== b1.type) return a1.icon < b1.icon ? 1 : -1; // types are different inside folder, so sort by icon (files/folders)
       else return a1.text > b1.text ? 1 : -1; // basic name/text sort
     },
-    "plugins": ["types", "state", "sort"],
-    "state": { "key": "autodeskHubs" }// key restore tree state
+    'checkbox': {
+      three_state: false,
+      whole_node: false,    // should be set to false. otherwise checking the hidden checkbox
+                            // could be possible by clicking the node
+      tie_selection: false, // necessary for whole_node to work
+    },
+    'plugins': ["types", "state", "sort", "checkbox"],
+    'state': { "key": "autodeskHubs" }// key restore tree state
   }).bind("activate_node.jstree", function (evt, data) {
     if (data != null && data.node != null && (data.node.type == 'versions' || data.node.type == 'bim360documents')) {
       // in case the node.id contains a | then split into URN & viewableId
@@ -112,12 +118,12 @@ function getForgeToken(callback) {
       callback(data.access_token, data.expires_in);
     });
   });
-  
+
 }
 
-function launchViewer( models ) {
-  if( !models || models.length <= 0 )
-    return console.error( 'Empty model input' );
+function launchViewer(models) {
+  if (!models || models.length <= 0)
+    return console.error('Empty model input');
 
   const options = {
     env: 'AutodeskProduction',
@@ -130,38 +136,38 @@ function launchViewer( models ) {
     }
   };
 
-  function loadManifest( documentId ) {
-    return new Promise(( resolve, reject ) => {
-      const onDocumentLoadSuccess = ( doc ) => {
+  function loadManifest(documentId) {
+    return new Promise((resolve, reject) => {
+      const onDocumentLoadSuccess = (doc) => {
         doc.downloadAecModelData(() => resolve(doc));
       };
-      Autodesk.Viewing.Document.load( documentId, onDocumentLoadSuccess, reject );
+      Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, reject);
     });
   }
 
-  Autodesk.Viewing.Initializer( options, function() {
+  Autodesk.Viewing.Initializer(options, function () {
     //get the viewer div
-    const viewerDiv = document.getElementById( 'forgeViewer' );
+    const viewerDiv = document.getElementById('forgeViewer');
 
     //initialize the viewer object
     const view = new Autodesk.Viewing.AggregatedView();
-    view.init( viewerDiv, options3d );
+    view.init(viewerDiv, options3d);
 
     const viewer = view.viewer;
 
     const tasks = [];
-    models.forEach( md => tasks.push( loadManifest( md.urn ) ) );
+    models.forEach(md => tasks.push(loadManifest(md.urn)));
 
 
     Promise.all(tasks)
-            .then( docs =>  Promise.resolve( docs.map( doc => {
-              const bubbles = doc.getRoot().search({type:'geometry', role: '3d'});
-              const bubble = bubbles[0];
-              if( !bubble ) return null;
+      .then(docs => Promise.resolve(docs.map(doc => {
+        const bubbles = doc.getRoot().search({ type: 'geometry', role: '3d' });
+        const bubble = bubbles[0];
+        if (!bubble) return null;
 
-              return bubble;
-            })))
-            .then( bubbles => view.setNodes( bubbles ) );
+        return bubble;
+      })))
+      .then(bubbles => view.setNodes(bubbles));
   });
 }
 

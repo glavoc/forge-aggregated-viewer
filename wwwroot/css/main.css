@@ -57,3 +57,8 @@ html, body {
   line-height: 52px;
   text-align: left;
 }
+
+.no_checkbox>i.jstree-checkbox
+{
+    display:none
+}

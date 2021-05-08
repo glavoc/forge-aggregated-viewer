@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices;
 
 namespace basicforgeviewer
 {
@@ -35,6 +36,7 @@ namespace basicforgeviewer
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
+
         }
     }
 }

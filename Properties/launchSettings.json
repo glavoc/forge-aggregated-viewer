@@ -23,7 +23,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "FORGE_CLIENT_ID": "apA4GCkT4k4DGQwj8xuinVSqgxIHAooA",
         "FORGE_CLIENT_SECRET": "aGVZq8wgmH4pWhKx",
-        "FORGE_CALLBACK_URL": "http://127.0.0.1:3000/api/forge/oauth2/callback"
+        "FORGE_CALLBACK_URL": "http://127.0.0.1:3000/api/forge/oauth2/callback",
+        "OAUTH_DATABASE": "mongodb+srv://<username>:<password>@clusterX-a1b2c4.mongodb.net/designcheck?retryWrites=true"
       }
     }
   }

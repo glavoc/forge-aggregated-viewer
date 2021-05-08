@@ -27,6 +27,7 @@ namespace basicforgeviewer.Controllers
             if (credentials == null)
             {
                 base.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return new AccessToken();
             }
             return new AccessToken()
             {

@@ -36,9 +36,9 @@ function getParameterByName(name, url) {
 var viewer;
 
 
-function launchViewer( models ) {
-  if( !models || models.length <= 0 )
-    return console.error( 'Empty model input' );
+function launchViewer(models) {
+  if (!models || models.length <= 0)
+    return console.error('Empty model input');
 
   const options = {
     env: 'AutodeskProduction',
@@ -51,38 +51,38 @@ function launchViewer( models ) {
     }
   };
 
-  function loadManifest( documentId ) {
-    return new Promise(( resolve, reject ) => {
-      const onDocumentLoadSuccess = ( doc ) => {
+  function loadManifest(documentId) {
+    return new Promise((resolve, reject) => {
+      const onDocumentLoadSuccess = (doc) => {
         doc.downloadAecModelData(() => resolve(doc));
       };
-      Autodesk.Viewing.Document.load( documentId, onDocumentLoadSuccess, reject );
+      Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, reject);
     });
   }
 
-  Autodesk.Viewing.Initializer( options, function() {
+  Autodesk.Viewing.Initializer(options, function () {
     //get the viewer div
-    const viewerDiv = document.getElementById( 'viewer' );
+    const viewerDiv = document.getElementById('viewer');
 
     //initialize the viewer object
     const view = new Autodesk.Viewing.AggregatedView();
-    view.init( viewerDiv, options3d );
+    view.init(viewerDiv, options3d);
 
     const viewer = view.viewer;
 
     const tasks = [];
-    models.forEach( md => tasks.push( loadManifest( md.urn ) ) );
+    models.forEach(md => tasks.push(loadManifest(md.urn)));
 
 
     Promise.all(tasks)
-            .then( docs =>  Promise.resolve( docs.map( doc => {
-              const bubbles = doc.getRoot().search({type:'geometry', role: '3d'});
-              const bubble = bubbles[0];
-              if( !bubble ) return null;
+      .then(docs => Promise.resolve(docs.map(doc => {
+        const bubbles = doc.getRoot().search({ type: 'geometry', role: '3d' });
+        const bubble = bubbles[0];
+        if (!bubble) return null;
 
-              return bubble;
-            })))
-            .then( bubbles => view.setNodes( bubbles ) );
+        return bubble;
+      })))
+      .then(bubbles => view.setNodes(bubbles));
   });
 
 
@@ -90,12 +90,13 @@ function launchViewer( models ) {
     console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
   }
 
-function getForgeToken(callback) {
-  fetch('/api/forge/oauth/token').then(res => {
-    res.json().then(data => {
-      callback(data.access_token, data.expires_in);
+  function getForgeToken(callback) {
+    fetch('/api/forge/oauth/token').then(res => {
+      res.json().then(data => {
+        callback(data.access_token, data.expires_in);
+      });
     });
-  });
-  
+
+  }
 }
 

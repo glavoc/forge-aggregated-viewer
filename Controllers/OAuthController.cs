@@ -19,6 +19,13 @@ namespace basicforgeviewer.Controllers
             public int expires_in { get; set; }
         }
 
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public OAuthController(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         [HttpGet]
         [Route("api/forge/oauth/token")]
         public async Task<AccessToken> GetPublicTokenAsync()
@@ -38,7 +45,7 @@ namespace basicforgeviewer.Controllers
         [HttpGet]
         [Route("api/forge/oauth/signout")]
         public IActionResult Singout()
-        {
+        {   
             // finish the session
             Credentials.Signout(base.Response.Cookies);
 

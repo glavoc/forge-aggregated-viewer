@@ -5,7 +5,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #viewerContainer {
@@ -26,8 +26,8 @@ html, body {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #37474F;
   resize: horizontal;
+  background: rgba(150,160,180,.5);
 }
 
   

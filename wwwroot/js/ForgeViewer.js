@@ -42,7 +42,7 @@ function launchViewer(models) {
 
   const options = {
     env: 'AutodeskProduction',
-    getAccessToken: fetchForgeToken
+    getAccessToken: getForgeToken
   };
 
   const options3d = {

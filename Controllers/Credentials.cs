@@ -13,9 +13,7 @@ namespace basicforgeviewer.Controllers
     public class Credentials
     {
         private const string FORGE_COOKIE = "ForgeApp";
-
         private Credentials() { }
-
         public string TokenInternal { get; set; }
         public string TokenPublic { get; set; }
         public string RefreshToken { get; set; }
@@ -46,8 +44,15 @@ namespace basicforgeviewer.Controllers
             credentials.ExpiresAt = DateTime.Now.AddSeconds(credentialInternal.expires_in);
             credentials.UserId = await GetUserId(credentials);
 
-            cookies.Append(FORGE_COOKIE, JsonConvert.SerializeObject(credentials));
-            await OAuthDB.Register(credentials.UserId, JsonConvert.SerializeObject(credentials));
+            var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+            {
+                Path = "/",
+                HttpOnly = false,
+                IsEssential = true, //<- there
+                Expires = credentials.ExpiresAt,
+            };
+
+            cookies.Append(FORGE_COOKIE, JsonConvert.SerializeObject(credentials), cookieOptions);
 
             return credentials;
         }

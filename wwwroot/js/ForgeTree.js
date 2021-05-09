@@ -35,7 +35,7 @@ $(document).ready(function () {
     $('#signOut').hide();
     $('#signIn').show();
   })
-  
+
   $.getJSON("/api/forge/clientid", function (res) {
     $("#ClientID").val(res.id);
     $("#provisionAccountSave").click(function () {
@@ -47,6 +47,7 @@ $(document).ready(function () {
 });
 
 function prepareUserHubsTree() {
+  var modelUrns = [];
   $('#userHubs').jstree({
     'core': {
       'themes': { "icons": true },
@@ -96,27 +97,27 @@ function prepareUserHubsTree() {
     },
     'plugins': ["types", "state", "sort", "checkbox"],
     'state': { "key": "autodeskHubs" }// key restore tree state
-  }).bind("activate_node.jstree", function (evt, data) {
+  }).each( function(){
+    $("#userHubs").jstree().disable_node(this.id)
+  }
+  ).on("changed.jstree", function (evt, data) {
     if (data != null && data.node != null && (data.node.type == 'versions' || data.node.type == 'bim360documents')) {
       // in case the node.id contains a | then split into URN & viewableId
+      var urn;
       if (data.node.id.indexOf('|') > -1) {
-        var urn = data.node.id.split('|')[1];
+        urn = data.node.id.split('|')[1];
         var viewableId = data.node.id.split('|')[2];
         console.log(urn);
         launchViewer(urn, viewableId);
       }
       else {
-        console.log(data.node.id);
-        //launchViewer(data.node.id);
-        const models = [
-          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0z' },
-          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0y' },
-          { urn: 'urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjNHMkxBZTVYUkdhOUJ4SWZ0aElXNnc_dmVyc2lvbj0x' },
-        ];
-        launchViewer(models.concat());
+        urn = data.node.id;
       }
+      if (modelUrns.indexOf(urn) == -1) { modelUrns.push(urn); }
+      else { modelUrns.pop(urn) }
+      launchViewer(modelUrns);
     }
-    else if (data.node.children.length > 0) {
+    else { //deselect parent nodes after selecting
       $('#userHubs').jstree(true).deselect_node(data.node);
       $('#userHubs').jstree(true).toggle_node(data.node);
     }

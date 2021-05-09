@@ -18,7 +18,7 @@
     "basicforgeviewer": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:3001;http://localhost:3000",
+      "applicationUrl": "http://localhost:3000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "FORGE_CLIENT_ID": "apA4GCkT4k4DGQwj8xuinVSqgxIHAooA",

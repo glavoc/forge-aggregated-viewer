@@ -16,87 +16,65 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-$(document).ready(function () {
-  // in case we want to load this app with a model pre-loaded
-  var urn = getParameterByName('urn');
-  if (urn !== null && urn !== '')
-    launchViewer(urn);
-});
-
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
 var viewer;
 
-
 function launchViewer(models) {
-  if (!models || models.length <= 0)
-    return console.error('Empty model input');
+    if (!models || models.length <= 0)
+        return console.error('Empty model input');
 
-  const options = {
-    env: 'AutodeskProduction',
-    getAccessToken: getForgeToken
-  };
+    const options = {
+        env: 'AutodeskProduction',
+        getAccessToken: getForgeToken
+    };
 
-  const options3d = {
-    viewerConfig: {
-      disableBimWalkInfoIcon: true
+    const options3d = {
+        viewerConfig: {
+            disableBimWalkInfoIcon: true
+        }
+    };
+
+    function loadManifest(documentId) {
+        return new Promise((resolve, reject) => {
+            const onDocumentLoadSuccess = (doc) => {
+                doc.downloadAecModelData(() => resolve(doc));
+            };
+            Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, reject);
+        });
     }
-  };
 
-  function loadManifest(documentId) {
-    return new Promise((resolve, reject) => {
-      const onDocumentLoadSuccess = (doc) => {
-        doc.downloadAecModelData(() => resolve(doc));
-      };
-      Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, reject);
-    });
-  }
+    var modelUrns = function () {
+        //get the viewer div
+        const viewerDiv = document.getElementById('forgeViewer');
 
-  Autodesk.Viewing.Initializer(options, function () {
-    //get the viewer div
-    const viewerDiv = document.getElementById('viewer');
+        //initialize the viewer object
+        const view = new Autodesk.Viewing.AggregatedView();
+        view.init(viewerDiv, options3d);
 
-    //initialize the viewer object
-    const view = new Autodesk.Viewing.AggregatedView();
-    view.init(viewerDiv, options3d);
+        const viewer = view.viewer;
 
-    const viewer = view.viewer;
+        const tasks = [];
+        models.forEach(md => tasks.push(loadManifest("urn:" + md)));
 
-    const tasks = [];
-    models.forEach(md => tasks.push(loadManifest(md.urn)));
+        Promise.all(tasks)
+            .then(docs => Promise.resolve(docs.map(doc => {
+                const bubbles = doc.getRoot().search({ type: 'geometry', role: '3d' });
+                const bubble = bubbles[0];
+                if (!bubble) return null;
 
+                return bubble;
+            })))
+            .then(bubbles => view.setNodes(bubbles));
+    }
 
-    Promise.all(tasks)
-      .then(docs => Promise.resolve(docs.map(doc => {
-        const bubbles = doc.getRoot().search({ type: 'geometry', role: '3d' });
-        const bubble = bubbles[0];
-        if (!bubble) return null;
+    Autodesk.Viewing.Initializer(options, modelUrns);
 
-        return bubble;
-      })))
-      .then(bubbles => view.setNodes(bubbles));
-  });
+    function getForgeToken(callback) {
+        fetch('/api/forge/oauth/token').then(res => {
+            res.json().then(data => {
+                callback(data.access_token, data.expires_in);
+            });
+        });
 
-
-  function onDocumentLoadFailure(viewerErrorCode) {
-    console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
-  }
-
-  function getForgeToken(callback) {
-    fetch('/api/forge/oauth/token').then(res => {
-      res.json().then(data => {
-        callback(data.access_token, data.expires_in);
-      });
-    });
-
-  }
+    }
 }
 

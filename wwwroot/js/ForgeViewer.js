@@ -81,6 +81,7 @@ async function addViewable(urn, xform, offset) {
 
 function removeModel(urn) {
   const models = viewer.impl.modelQueue().getModels();
-  const urns = () => models.myData.urn //!<< The model you want to unload
-  viewer.unloadModel('urn:' + urn(urn))
+  const urns = models.map((model) => model.loader.svfUrn) //!<< The model you want to unload
+  var index = urns.indexOf(urn)
+  viewer.unloadModel(models[index])
 }

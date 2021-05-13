@@ -115,6 +115,18 @@ function prepareUserHubsTree() {
       $('#userHubs').jstree(true).deselect_node(data.node);
       $('#userHubs').jstree(true).toggle_node(data.node);
     }
+  }).on("uncheck_node.jstree", function (evt, data) {
+    if (data != null && data.node != null && (data.node.type == 'versions' || data.node.type == 'bim360documents')) {
+      // in case the node.id contains a | then split into URN & viewableId
+      var urn;
+      if (data.node.id.indexOf('|') > -1) {
+        urn = data.node.id.split('|')[1];
+      }
+      else {
+        urn = data.node.id;
+      }
+      removeModel(urn)
+    }
   });
 }
 

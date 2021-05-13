@@ -54,19 +54,17 @@ function launchViewer(urn) {
   }
 }
 
-async function addViewable(urn, xform, offset) {
+async function addViewable(urn, xform) {
   return new Promise(function (resolve, reject) {
     function onDocumentLoadSuccess(doc) {
       const viewable = doc.getRoot().getDefaultGeometry();
       const options = {
         preserveView: true,
-        keepCurrentModels: true
+        keepCurrentModels: true,
+        globalOffset: {x: 0, y: 0, z: 0}
       };
       if (xform) {
         options.placementTransform = xform;
-      }
-      if (offset) {
-        options.globalOffset = offset;
       }
       viewer.loadDocumentNode(doc, viewable, options)
         .then(resolve)

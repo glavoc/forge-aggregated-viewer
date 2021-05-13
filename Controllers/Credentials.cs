@@ -13,13 +13,12 @@ namespace basicforgeviewer.Controllers
     public class Credentials
     {
         private const string FORGE_COOKIE = "ForgeApp";
-
         private Credentials() { }
-
         public string TokenInternal { get; set; }
         public string TokenPublic { get; set; }
         public string RefreshToken { get; set; }
         public DateTime ExpiresAt { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Perform the OAuth authorization via code
@@ -43,10 +42,26 @@ namespace basicforgeviewer.Controllers
             credentials.TokenPublic = credentialPublic.access_token;
             credentials.RefreshToken = credentialPublic.refresh_token;
             credentials.ExpiresAt = DateTime.Now.AddSeconds(credentialInternal.expires_in);
+            credentials.UserId = await GetUserId(credentials);
 
-            cookies.Append(FORGE_COOKIE, JsonConvert.SerializeObject(credentials));
+            var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+            {
+                Path = "/",
+                HttpOnly = false,
+                IsEssential = true, //<- there
+                Expires = credentials.ExpiresAt,
+            };
+
+            cookies.Append(FORGE_COOKIE, JsonConvert.SerializeObject(credentials), cookieOptions);
 
             return credentials;
+        }
+        private static async Task<string> GetUserId(Credentials credentials)
+        {
+            UserProfileApi userApi = new UserProfileApi();
+            userApi.Configuration.AccessToken = credentials.TokenInternal;
+            dynamic userProfile = await userApi.GetUserProfileAsync();
+            return userProfile.userId;
         }
 
         /// <summary>

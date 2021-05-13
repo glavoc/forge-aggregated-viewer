@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices;
+using Microsoft.Extensions.Configuration;
 
 namespace basicforgeviewer
 {
@@ -21,6 +23,8 @@ namespace basicforgeviewer
             .AddMvc(options => options.EnableEndpointRouting = false)
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
             .AddNewtonsoftJson();
+            services.AddHttpContextAccessor();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +39,7 @@ namespace basicforgeviewer
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
+
         }
     }
 }

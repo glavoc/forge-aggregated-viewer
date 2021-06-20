@@ -1,0 +1,19 @@
+/*css file for manipulating default forge viewer*/
+
+/*.adsk-viewing-viewer .adsk-toolbar {
+    position: relative;
+    bottom: 500px;
+
+    right: 50px;
+    float: right;
+    width: 120px;
+    height: 600px;
+    z-index: 5;
+    pointer-events: auto;
+
+  }
+
+  .viewcube, .viewcubeWrapper {
+    size: 50px;
+  }
+  */

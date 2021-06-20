@@ -246,7 +246,7 @@ namespace basicforgeviewer.Controllers
 
                 jsTreeNode node = new jsTreeNode(
                     urn,
-                    string.Format("v{0}: {1} by {2}", verNum, versionDate.ToString("dd/MM/yy HH:mm:ss"), userName),
+                    string.Format("v{0}: {1}", verNum, versionDate.ToString("dd/MM/yy HH:mm:ss")),
                     "versions",
                     false);
                 nodes.Add(node);

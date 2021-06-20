@@ -36,37 +36,31 @@
     <script src="js/ForgeTree.js"></script>
     <script src="js/ForgeViewer.js"></script>
     <link href="css/main.css" rel="stylesheet" />
-
-
-
 </head>
 
-<body style="background-color: #96B6C0;">
+
+
+
+<body>
     <div id="viewport">
-        <div id="sidebar">
-            <header>
-                <img alt="Autodesk Forge"
+        <div>
+            <div class="navbar">
+                <img class="logo" alt="Autodesk Forge"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/9/96/20130314190443%21Autodesk_logo.svg/120px-Autodesk_logo.svg.png"
-                    height="40"> Visual Reports
-            </header>
-            <div id="userHubs"></div>
+                    height="50">
+                <h1 id="title">Visual Reports</h1>
+                <button id="signIn" type="button">
+                    Sign In
+                </button>
+            </div>
         </div>
-        <div id="viewerContainer">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div style="float: right; margin-top: 15px;">
-                        <span style="padding-right: 5px; cursor: pointer;" id="signIn" title="Sign in">
-                            <span class="glyphicon glyphicon-user"> </span>
-                            Sign in
-                        </span>
-                        <span style="padding-right: 5px; cursor: pointer; display: none;" id="signOut" title="Sign out">
-                            <span class="glyphicon glyphicon-user"> </span>
-                            Sign out
-                        </span>
-                    </div>
-                </div>
-            </nav>
-            <div id="forgeViewer" class="fill"></div>
+        <div class="container fill-height">
+            <div id="userHubs" class="sidebar fill-height">
+
+            </div>
+            <div id="forgeViewer" class="viewer fill-height">
+
+            </div>
         </div>
     </div>
 </body>

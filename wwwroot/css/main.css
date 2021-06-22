@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
-
 body {
   background-image: url('https://cdn.hipwallpaper.com/i/71/89/IV4lZ3.jpg');
   image-resolution: 100px;
@@ -8,15 +7,19 @@ body {
   background-position: top;
   min-height: 100%;
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
   border-radius: 0px;
-  background-color: rgba(33, 34, 36, 0.8);
+  border-width: 0px;
+  background-image: linear-gradient(to bottom left, rgba(33, 34, 36, 0.8), 1%,rgba(255, 255, 255, 0));
   margin: auto;
   width: 100%;
-  height: 20px;
+  height: 50px;
   padding: left;
 }
 
@@ -24,7 +27,7 @@ body {
   margin-top: 10px;
   float: left;
   font-size: 25px;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: azure;
 }
 
@@ -33,46 +36,73 @@ body {
   float: left;
 }
 
-button{
+#signIn{
   text-align: center;
   line-height: 0px;
   color: #000;
-  padding:15px 14px;
+  padding:15px 20px;
   border: 2px solid azure;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
   float: right;
-  margin-top: 7px;
   margin-right: 50px;
+  margin-top: 5px;
   font-family:Geneva;
 }
 
 .container{
   padding: 0px;
   width: 100%;
+  float: left;
 }
 
 .fill-height{
   height: calc(100vh - 50px);
 }
 
-.sidebar {
+.fill-width {
+  width: calc(100% - 100px)
+}
+
+#sidebar-container {
+  display: none;
+  overflow: scroll;
   z-index: 1000;
-  width: 250px;
-  background-color: rgba(33, 34, 36, 0.8);
+  width: 50px;
+  background-color: rgba(60, 63, 68, 0.563);
   overflow-y: auto;
-  min-width: 250px;
+  min-width: 50px;
   max-width: 600px;
   resize: horizontal;
   position: fixed;
   color: azure;
   font-family: Geneva;
+  height: calc(100vh - 200px);
+  margin-top: 25px;
+  border-color: rgba(227, 230, 176, 0.734);
+  border-width: 2px 2px 2px 0px;
+  border-style: solid;
+}
+
+.side-navigator{
+  text-align: center;
+  width: 100px;
+  float: right;
+  z-index: 1000;
+}
+
+.side-navigator i{
+  font-size: 40px;
+  width: 100px;
+  color: rgba(33, 39, 31, 0.761);
+  cursor: pointer;
+  margin-top: 50px;
+  text-shadow:2px 3px 4px rgba(255,165,0,.75)
 }
 
 .viewer {
   position: absolute;
-  width: 100%;
 }
 
 .jstree-anchor {
@@ -92,54 +122,34 @@ button{
 
 
 
-/*
-#viewerContainer {
-  padding-left: 150px;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+/*   SCROLLBAR   */
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);   
+  border: 1px solid black;
+  background: rgb(41,41,41);
+  border-radius: 10px;
+}
+::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+  padding-top: 40px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius:10px;
+  height: 30px;
+  width: 8px;
+  border: 1px solid black;
+  background: rgb(111,111,111);
+  -webkit-box-shadow: 0 1px 1px rgb(0,0,0);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);   
+  background: -webkit-linear-gradient(rgb(200,200,200), rgb(150,150,150));
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6d801ac6; 
 }
 
-#sidebar {
-  z-index: 1000;
-  position: fixed;
-  left: 250px;
-  width: 250px;
-  min-width: 250px;
-  max-width: 600px;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  resize: horizontal;
-  background: rgba(91, 199, 20, 0.1);
-}
-
-  
-.fill {
-  height: calc(100vh - 80px);
-}
-
-#userHubs{
-  color: #fff; 
-  font-size: 12px;
-}
-#userHubs a:hover{
-  background-color: #455A64;
-  color: azure;
-}
-
-#forgeViewer {
-  position: absolute;
-  width: 100%;
-  margin:0 auto;
-}
-
-#sidebar header {
-  color: #fff;
-  background-color: #263238;
-  font-size: 16px;
-  line-height: 52px;
-  text-align: left;
-}
-*/

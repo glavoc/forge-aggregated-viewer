@@ -11,17 +11,18 @@ $(document).ready(function () {
     url: '/api/forge/oauth/token',
     success: function (res) {
       //got token, means user is signed in
-      $('#signIn').html('Sign Out');
-      signedIn = true;
+
       // finally:
       prepareUserHubsTree();
+      $('#signIn').html('Sign Out');
+      $('#sidebar-container').css('display','block')
+      signedIn = true;
     }
   })
 
   $('#signIn').click(function () {
     //Perform an asynchronous HTTP (Ajax) request
     if (!signedIn) {
-
       $.ajax({
         url: '/api/forge/oauth/url',
         //i thought that it'll redirect to url on success, but i'm wrong
@@ -30,27 +31,22 @@ $(document).ready(function () {
           location.href = url;
           signedIn = true;
         }
+        
       })
     }
     else {
       signedIn = false;
+      $('#sidebar-container').css('display','none')
       location.href = '/api/forge/oauth/signout';
     }
-    /*
-    $('#signOut').click(function () {
-      location.href = '/api/forge/oauth/signout';
-      $('#signOut').hide();
-      $('#signIn').show();
-    })*/
-
+/*
     $.getJSON("/api/forge/clientid", function (res) {
       $("#ClientID").val(res.id);
       $("#provisionAccountSave").click(function () {
         $('#provisionAccountModal').modal('toggle');
         $('#userHubs').jstree(true).refresh();
       });
-    });
-
+    });*/
   });
 
   function prepareUserHubsTree() {

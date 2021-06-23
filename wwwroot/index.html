@@ -16,10 +16,13 @@
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--D3 Charts-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <!-- this project js files-->
     <script src="js/ForgeTree.js"></script>
     <script src="js/ForgeViewer.js"></script>
-    <script src="js/ModelElement.js"></script>
+    <script src="js/ModelData.js"></script>
+    <script src="js/Dashboard.js"></script>
     <link href="css/main.css" rel="stylesheet" />
 </head>
 
@@ -45,7 +48,7 @@
             </div>
         </div>
         <div class="side-navigator fill-height">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-pie-chart" id="pieChart"></i>
             <i class="fa fa-car"></i>
         </div>
     </div>

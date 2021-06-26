@@ -40,9 +40,13 @@ function launchViewer(urn) {
     view = new Autodesk.Viewing.AggregatedView();
     view.init(viewerDiv, options3d);
     viewer = view.viewer;
-    var callback = function () { };
+    var callback = function () {};
     Autodesk.Viewing.Initializer(options, callback);
   }
+
+  viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
+    populateDashboard();
+  })
   addViewable(urn);
 
   function getForgeToken(callback) {
@@ -61,7 +65,11 @@ async function addViewable(urn, xform) {
       const options = {
         preserveView: true,
         keepCurrentModels: true,
-        globalOffset: {x: 0, y: 0, z: 0}
+        globalOffset: {
+          x: 0,
+          y: 0,
+          z: 0
+        }
       };
       if (xform) {
         options.placementTransform = xform;
@@ -70,6 +78,7 @@ async function addViewable(urn, xform) {
         .then(resolve)
         .catch(reject);
     }
+
     function onDocumentLoadFailure(code) {
       reject(`Could not load document (${code}).`);
     }
@@ -82,4 +91,50 @@ function removeModel(urn) {
   const urns = models.map((model) => model.loader.svfUrn) //!<< The model you want to unload
   var index = urns.indexOf(urn)
   viewer.unloadModel(models[index])
+}
+
+function populateDashboard() {
+  var data = new ModelData(viewer);
+  data.init(function () {
+    var svg = d3.select("#dashboardViewer").append('svg'),
+      width = 600,
+      height = 600,
+      radius = Math.min(width, height) / 2,
+      g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    console.log(data.getLabels('Material'))
+
+    svg.style("width", "100%");
+    svg.style("height", "100%");
+    svg.style("z-index", 9);
+
+    var color = d3.scaleOrdinal()
+      .domain(data)
+      .range(d3.schemeSet2);
+
+    // Generate the pie
+    var pie = d3.pie()
+      .value(function (d) {
+        return d.getCountInstances('Material')
+      })
+
+    // Generate the arcs
+    var arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius);
+
+    //Generate groups
+    var arcs = g.selectAll("arc")
+      .data(pie(data))
+      .enter()
+      .append("g")
+      .attr("class", "arc")
+
+    //Draw arc paths
+    arcs.append("path")
+      .attr("fill", function (d, i) {
+        return color(i);
+      })
+      .attr("d", arc);
+  })
 }

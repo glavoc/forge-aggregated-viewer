@@ -40,13 +40,14 @@ function launchViewer(urn) {
     view = new Autodesk.Viewing.AggregatedView();
     view.init(viewerDiv, options3d);
     viewer = view.viewer;
-    var callback = function () {};
+    var callback = function () { };
     Autodesk.Viewing.Initializer(options, callback);
   }
-
+  //call dashboard loader once geometry has loaded
   viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function () {
     populateDashboard();
   })
+
   addViewable(urn);
 
   function getForgeToken(callback) {
@@ -95,46 +96,126 @@ function removeModel(urn) {
 
 function populateDashboard() {
   var data = new ModelData(viewer);
-  data.init(function () {
-    var svg = d3.select("#dashboardViewer").append('svg'),
-      width = 600,
-      height = 600,
-      radius = Math.min(width, height) / 2,
-      g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  var propertyName = 'Material';
 
-    console.log(data.getLabels('Material'))
+  if (document.getElementById('dashboardViewer').firstChild) {
+    d3.select("svg").remove();
+  }
+
+  data.init(function () {
+    var chartData = [];
+    var width = 450
+    var height = 450
+    var radius = Math.min(width, height) / 2
+
+    var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+      '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+      '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+      '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+      '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+      '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+      '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+      '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+      '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+      '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+
+    for (material in data.getLabels(propertyName)) {
+      var input = {};
+      input['Name'] = material;
+      input['Values'] = data.getIds(propertyName, material);
+      input['Size'] = data.getIds(propertyName, material).length;
+      chartData.push(input)
+    }
+
+    var svg = d3.select("#dashboardViewer")
+      .append('svg')
+      .attr("width", width)
+      .attr("height", height)
+
+    var g = svg
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+
+    console.log(data.getLabels(propertyName))
 
     svg.style("width", "100%");
     svg.style("height", "100%");
     svg.style("z-index", 9);
+    g.style("margin", "auto")
 
     var color = d3.scaleOrdinal()
-      .domain(data)
-      .range(d3.schemeSet2);
+      .domain(chartData)
+      .range(colorArray);
 
     // Generate the pie
     var pie = d3.pie()
       .value(function (d) {
-        return d.getCountInstances('Material')
+        return d.Size
       })
 
     // Generate the arcs
     var arc = d3.arc()
       .innerRadius(0)
       .outerRadius(radius);
+    // Another arc that won't be drawn. Just for labels positioning
+    var outerArc = d3.arc()
+      .innerRadius(radius -80)
+      .outerRadius(radius)
 
     //Generate groups
     var arcs = g.selectAll("arc")
-      .data(pie(data))
+      .data(pie(chartData))
       .enter()
-      .append("g")
-      .attr("class", "arc")
+
 
     //Draw arc paths
     arcs.append("path")
-      .attr("fill", function (d, i) {
-        return color(i);
-      })
+      .attr("fill", function (d, i) { return (color(i)) })
       .attr("d", arc);
-  })
+    
+    arcs.append("text")
+      .attr("transform", function (d) {
+        return "translate(" + outerArc.centroid(d) + ")";
+      })
+      .text(function (d) { return d.Name; });
+
+  /*
+      arcs
+        .selectAll('allPolylines')
+        .data(chartData)
+        .enter()
+        .append('polyline')
+        .attr("stroke", "black")
+        .style("fill", "none")
+        .attr("stroke-width", 1)
+        .attr('points', function (d) {
+          var posA = arc.centroid(d) // line insertion in the slice
+          var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+          var posC = outerArc.centroid(d); // Label position = almost the same as posB
+          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+          posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+          return [posA, posB, posC]
+        })
+  
+      
+      arcs
+        .selectAll('allLabels')
+        .data(chartData)
+        .enter()
+        .append('text')
+        .text(function (d) { console.log(d.Name); return d.Name })
+        .attr('transform', function (d) {
+          var pos = outerArc.centroid(d);
+          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+          pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+          return 'translate(' + pos + ')';
+        })
+        .style('text-anchor', function (d) {
+          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+          return (midangle < Math.PI ? 'start' : 'end')
+        })
+        */
+})
 }

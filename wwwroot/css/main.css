@@ -77,6 +77,16 @@ body {
   right: 0;
 }
 
+text{
+  fill: teal;
+  font-weight: bold;
+}
+
+.titlePieChart {
+  fill: teal;
+  font-weight: bold;
+}
+
 #sidebar-container {
   display: none;
   overflow: scroll;

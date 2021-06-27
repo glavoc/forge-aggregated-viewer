@@ -48,7 +48,8 @@ class ModelData {
     }
 
     getLabels(propertyName) {
-        return Object.keys(this._modelData[propertyName]);
+        
+        return this._modelData[propertyName];
     }
 
     getCountInstances(propertyName) {

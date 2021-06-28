@@ -106,7 +106,8 @@ function populateDashboard() {
     var chartData = [];
     var width = 450
     var height = 450
-    var radius = Math.min(width, height) / 2
+    var margin = 50
+    var radius = Math.min(width, height) / 2 - margin
 
     var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
       '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
@@ -158,11 +159,11 @@ function populateDashboard() {
     // Generate the arcs
     var arc = d3.arc()
       .innerRadius(0)
-      .outerRadius(radius);
+      .outerRadius(radius-50);
     // Another arc that won't be drawn. Just for labels positioning
     var outerArc = d3.arc()
-      .innerRadius(radius -80)
-      .outerRadius(radius)
+      .innerRadius(radius*0.8)
+      .outerRadius(radius*0.8)
 
     //Generate groups
     var arcs = g.selectAll("arc")
@@ -181,41 +182,40 @@ function populateDashboard() {
       })
       .text(function (d) { return d.Name; });
 
-  /*
-      arcs
-        .selectAll('allPolylines')
-        .data(chartData)
-        .enter()
-        .append('polyline')
-        .attr("stroke", "black")
-        .style("fill", "none")
-        .attr("stroke-width", 1)
-        .attr('points', function (d) {
-          var posA = arc.centroid(d) // line insertion in the slice
-          var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-          var posC = outerArc.centroid(d); // Label position = almost the same as posB
-          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-          posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-          return [posA, posB, posC]
-        })
-  
-      
-      arcs
-        .selectAll('allLabels')
-        .data(chartData)
-        .enter()
-        .append('text')
-        .text(function (d) { console.log(d.Name); return d.Name })
-        .attr('transform', function (d) {
-          var pos = outerArc.centroid(d);
-          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-          pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
-          return 'translate(' + pos + ')';
-        })
-        .style('text-anchor', function (d) {
-          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-          return (midangle < Math.PI ? 'start' : 'end')
-        })
-        */
+// Add the polylines between chart and labels:
+arcs
+  .selectAll('allPolylines')
+  .data(pie(chartData))
+  .enter()
+  .append('polyline')
+    .attr("stroke", "black")
+    .style("fill", "none")
+    .attr("stroke-width", 1)
+    .attr('points', function(d) {
+      var posA = arc.centroid(d) // line insertion in the slice
+      var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+      var posC = outerArc.centroid(d); // Label position = almost the same as posB
+      var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+      posC[0] = radius * 0.85 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+      return [posA, posB, posC]
+    })
+
+// Add the polylines between chart and labels:
+arcs
+  .selectAll('allLabels')
+  .data(pie(chartData))
+  .enter()
+  .append('text')
+    .text( function(d) { return d.data.Name } )
+    .attr('transform', function(d) {
+        var pos = outerArc.centroid(d);
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+        return 'translate(' + pos + ')';
+    })
+    .style('text-anchor', function(d) {
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        return (midangle < Math.PI ? 'start' : 'end')
+    })
 })
 }

@@ -98,8 +98,10 @@ function populateDashboard() {
   var data = new ModelData(viewer);
   var propertyName = 'Material';
 
-  if (document.getElementById('dashboardViewer').firstChild) {
-    d3.select("svg").remove();
+  //kill the children
+  var pieContainer = $("#dashboardViewer");
+  while (pieContainer.firstChild) {
+    pieContainer.removeChild(pieContainer.firstChild);
   }
 
   data.init(function () {
@@ -129,7 +131,7 @@ function populateDashboard() {
     ];
 
 
-    var svg = d3.select("#dasboardViewer")
+    var svg = d3.select('#dashboardViewer')
       .append("div")
       // Container class to make it responsive.
       .classed("svg-container", true)
@@ -222,7 +224,7 @@ function populateDashboard() {
       .append('text')
       .text(function (d) {
         console.log(d.data.Name);
-        return d.data.Names
+        return d.data.Name
       })
       .attr('transform', function (d) {
         var pos = outerArc.centroid(d);
